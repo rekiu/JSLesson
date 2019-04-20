@@ -13,7 +13,7 @@ let appData = {
   savings: false
 };
 
-let i=0;
+/*let i=0;
 do {
   i++;
   let Costs = prompt('Введите обязательную статью расходов в этом месяце', ''),
@@ -28,7 +28,7 @@ do {
       i--;
       }
 }
-while (i<2);
+while (i<2);*/
 
 
 /*let i=0;
@@ -42,11 +42,11 @@ while (i<2) {
       console.log("done");
     appData.expenses[Costs] = Price;
       } else {
+      i--;
+      }i++; } */
 
-      }i++; */
 
-
-/*for (let i=0; i<2; i++) {
+for (let i=0; i<2; i++) {
   let Costs = prompt('Введите обязательную статью расходов в этом месяце', ''),
       Price = prompt('Во сколько обойдется?', '');
    
@@ -56,9 +56,9 @@ while (i<2) {
       console.log("done");
     appData.expenses[Costs] = Price;
       } else {
-
+      i--;
   }  
-}*/
+}
 
 appData.moneyPerDay = appData.budget/30;
 
@@ -77,4 +77,4 @@ if(appData.moneyPerDay < 100) {
 console.log(appData);
 
 }
-main();
+main(); 
