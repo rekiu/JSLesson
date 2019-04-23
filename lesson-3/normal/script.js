@@ -33,9 +33,9 @@ function chooseExpenses() {
         && Costs != '' && Price != '' && Costs.length <50) {
         console.log("done");
       appData.expenses[Costs] = Price;
-        } else {
-        i--;
-    }  
+    } else {
+      i--;
+    }     
   }
 }
 
@@ -46,10 +46,10 @@ function chooseOptExpenses() {
     let Costs = prompt('Статья необязательных расходов', '');
     if ((typeof (Costs) === 'string') && (typeof (Costs) != null) 
     && (Costs != '') && Costs.length < 50) {
-      appData.optionalExpenses = Costs; 
+      appData.optionalExpenses[i] = Costs; 
     } else {
-      appData.optionalExpenses = "Необязательная статья расходов";
-    }
+      i--;
+    } 
   }
 }
 
