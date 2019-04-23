@@ -42,13 +42,13 @@ function chooseExpenses() {
 chooseExpenses();
 
 function chooseOptExpenses() {
-  for (let i = 0; i<5; i++) {
+  for (let i = 1; i<4; i++) {
     let Costs = prompt('Статья необязательных расходов', '');
     if ((typeof (Costs) === 'string') && (typeof (Costs) != null) 
     && (Costs != '') && Costs.length < 50) {
-      appData.optionalExpenses[i++] = Costs; 
+      appData.optionalExpenses = Costs; 
     } else {
-      appData.optionalExpenses[i++] = "Необязательная статья расходов";
+      appData.optionalExpenses = "Необязательная статья расходов";
     }
   }
 }
