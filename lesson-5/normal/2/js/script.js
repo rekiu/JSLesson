@@ -9,17 +9,18 @@ let start = document.getElementById('start'),
     monthSavingsValue = document.getElementsByClassName('monthsavings-value')[0],
     yearSavingsValue = document.getElementsByClassName('yearsavings-value')[0],
 
-    expensesItem = document.getElementsByClassName('expenses-item'); // вот тут не уверен что правильно
+    expensesItem = document.querySelectorAll('.expenses-item'); 
 
-let optionalExpensesBtn = document.querySelector('.optionalexpenses-btn');
-let countBudgetBtn = document.querySelector('.count-budget-btn');  
+let expensesItemBtn = document.getElementsByTagName('button')[0],
+    expensesItemBtnTwo = document.getElementsByTagName('button')[1];
+let countBudgetBtn = document.getElementsByTagName('button')[2];  
 
-let optionalExpenseItem = document.querySelectorAll('optionalexpenses-item'),
+let optionalExpenseItem = document.querySelectorAll('.optionalexpenses-item'),
 
-    income = document.querySelector('.income'),
-    savings = document.querySelector('.savings'),
-    sum = document.querySelector('.sum'),
-    percent = document.querySelector('.percent'),
+    income = document.getElementById('income'),
+    savings = document.getElementById('savings'),
+    sum = document.getElementById('sum'),
+    percent = document.getElementById('percent'),
 
     yearValue = document.querySelector('.year-value'),
     montValue = document.querySelector('.month-value'),
@@ -35,7 +36,8 @@ let optionalExpenseItem = document.querySelectorAll('optionalexpenses-item'),
     console.log(monthSavingsValue);
     console.log(yearSavingsValue);
     console.log(expensesItem);
-    console.log(optionalExpensesBtn);
+    console.log(expensesItemBtn);
+    console.log(expensesItemBtnTwo);
     console.log(countBudgetBtn);
     console.log(optionalExpenseItem);
     console.log(income);
@@ -46,9 +48,3 @@ let optionalExpenseItem = document.querySelectorAll('optionalexpenses-item'),
     console.log(yearValue);
     console.log(montValue);
     console.log(dayValue);
-
-
-
-
-
-   
