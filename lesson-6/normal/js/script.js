@@ -11,7 +11,7 @@ let startBtn = document.getElementById('start'),
   monthSavingsValue = document.getElementsByClassName('monthsavings-value')[0],
   yearSavingsValue = document.getElementsByClassName('yearsavings-value')[0],
 
-  expensesItem = document.querySelectorAll('.expenses-item'); /// вот эта
+  expensesItem = document.querySelectorAll('.expenses-item'); 
 
 let expensesItemBtn = document.getElementsByTagName('button')[0],
   optionalExpensesBtn = document.getElementsByTagName('button')[1];
@@ -25,7 +25,7 @@ let optionalExpenseItem = document.querySelectorAll('.optionalexpenses-item'),
   percentValue = document.getElementById('percent'),
 
   yearValue = document.querySelector('.year-value'),
-  montValue = document.querySelector('.month-value'),
+  monthValue = document.querySelector('.month-value'),
   dayValue = document.querySelector('.day-value');
 
 let Money, Time;
@@ -39,15 +39,6 @@ let appData = {
   savings: false
 };
 
-/*while(appData.expenses == undefined) {      
-  expensesItemBtn.disabled = true; 
-  optionalExpensesBtn.disabled = true;
-  countBudgetBtn.disabled = true;                   
-  expensesItemBtn.style.background = '#656565';
-  optionalExpensesBtn.style.background = '#656565';
-  countBudgetBtn.style.background = '#656565';
-}*/
-
 expensesItemBtn.disabled = true;
 expensesItemBtn.style.background = '#656565';
 
@@ -57,32 +48,8 @@ optionalExpensesBtn.style.background = '#656565';
 countBudgetBtn.disabled = true;
 countBudgetBtn.style.background = '#656565';
 
-expensesItem.forEach(function (item, i, array) { 
-  item.addEventListener('input', function (event) {
 
-    if ((array[0].value != "" && array[1].value != "") ||
-      (array[2].value != "" && array[3].value != "")) {
-      expensesItemBtn.disabled = false;
-      expensesItemBtn.style.background = '';
-    } else {
-      expensesItemBtn.disabled = true;
-      expensesItemBtn.style.background = '#656565';
-    }
-  });
-}); 
 
-optionalExpenseItem.forEach(function (item) {
-  item.addEventListener('input', function () {
-
-    if ((item.value != "")) {
-      optionalExpensesBtn.disabled = false;
-      optionalExpensesBtn.style.background = '';
-    } else {
-      optionalExpensesBtn.disabled = true;
-      optionalExpensesBtn.style.background = '#656565';
-    }
-  });
-});
 
 startBtn.addEventListener('click', function () {
   Time = prompt('Введите дату в формате YYYY-MM-DD', 'YYYY-MM-DD');
@@ -94,58 +61,53 @@ startBtn.addEventListener('click', function () {
   appData.budget = Money;
   appData.timeData = Time;
   budgetValue.textContent = Money.toFixed();
-  yearSavingsValue.value = new Date(Date.parse(Time)).getFullYear();
-  monthSavingsValue.value = new Date(Date(Time)).getMonth() + 1;
-  dayValue.value = new Date(Date(Time)).getDate();
+  yearValue.value = new Date(Date.parse(Time)).getFullYear();
+  monthValue.value = new Date(Date.parse(Time)).getMonth() + 1;
+  dayValue.value = new Date(Date.parse(Time)).getDate();
 
+  expensesItem.forEach(function (item, i, array) { 
+    item.addEventListener('input', function (event) {
+  
+      if ((array[0].value != "" && array[1].value != "") ||
+        (array[2].value != "" && array[3].value != "")) {
+        expensesItemBtn.disabled = false;
+        expensesItemBtn.style.background = '';
+      } else {
+        expensesItemBtn.disabled = true;
+        expensesItemBtn.style.background = '#656565';
+      }
+    });
+  }); 
+  
+  optionalExpenseItem.forEach(function (item) {
+    item.addEventListener('input', function () {
+  
+      if ((item.value != "")) {
+        optionalExpensesBtn.disabled = false;
+        optionalExpensesBtn.style.background = '';
+      } else {
+        optionalExpensesBtn.disabled = true;
+        optionalExpensesBtn.style.background = '#656565';
+      }
+    });
+  });
 
-  countBudgetBtn.disabled = false;
-  countBudgetBtn.style.background = '';
-
-
-  /* optionalExpensesBtn.disabled = false;
-   optionalExpensesBtn.style.background = '';
-
-   countBudgetBtn.disabled = false;
-   countBudgetBtn.style.background = '';
-   
-   console.log(appData.expenses);
-   
-   if (appData.expenses != '' && appData.expenses != undefined  ) {     
-     expensesItemBtn.disabled = false;
-     expensesItemBtn.style.background = '';
-   } else {
-
-   }*/
-
-
-
-  /*expensesItemBtn.disabled = false;
-  expensesItemBtn.style.background = '';
-
-  optionalExpensesBtn.disabled = false;
-  optionalExpensesBtn.style.background = '';
-
-  countBudgetBtn.disabled = false;
-  countBudgetBtn.style.background = '';*/
-});
 
 expensesItemBtn.addEventListener('click', function () {
   let sum = 0;
+  countBudgetBtn.disabled = false;
+  countBudgetBtn.style.background = '';
 
   for (let i = 0; i < expensesItem.length; i++) {
     let Costs = expensesItem[i].value,
       Price = expensesItem[++i].value;
 
-    if ((typeof (Costs)) === 'string' && (typeof (Costs)) != null &&
-      (typeof (Price)) != null &&
+    if ((typeof (Costs)) === 'string' && Costs != null &&
+      Price != null &&
       Costs != '' && Price != '' && Costs.length < 50) {
       console.log("Всё верно");
       appData.expenses[Costs] = Price;
       sum += +Price;
-    } else {
-      i--;
-
     }
   }
   expensesValue.textContent = sum;
@@ -154,17 +116,15 @@ expensesItemBtn.addEventListener('click', function () {
 optionalExpensesBtn.addEventListener('click', function () {
   for (let i = 0; i < optionalExpenseItem.length; i++) {
     let Costs = optionalExpenseItem[i].value;
-    if ((typeof (Costs) === 'string') && (typeof (Costs) != null) &&
-      (Costs != '') && Costs.length < 50) {
+    if ((typeof (Costs) === 'string') && Costs != null &&
+      Costs != '' && Costs.length < 50) {
       appData.optionalExpenses[i] = Costs;
       optionalExpensesValue.textContent += appData.optionalExpenses[i] + ' ';
-    } else {
-      i--;
-    }
+      }
   }
 });
 
-countBudgetBtn.addEventListener('click', function () { //вот тут свериться
+countBudgetBtn.addEventListener('click', function () { 
   if (appData.budget != undefined && expensesValue.textContent != "") {
     appData.moneyPerDay = ((appData.budget - +expensesValue.textContent) / 30).toFixed(2); /// заметка
     dayBudgetValue.textContent = appData.moneyPerDay;
@@ -222,3 +182,4 @@ percentValue.addEventListener('input', function () {
     yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
   }
 });
+});//startBtn
